@@ -1,0 +1,19 @@
+<% @user ||= current_user %>
+<div class="apply_status">
+  <div>
+  <!-- <a href="<%= applicant_users_user_path(@user) %>"> -->
+    <strong id="applicant_users" class="stat">
+    <%= @user.applicant_user.count %>
+    </strong>
+    コラボ申請された
+    <!-- </a> -->
+  </div>
+  <div>
+  <!-- <a href="<%= target_users_user_path(@user) %>"> -->
+    <strong id="target_users" class="stat">
+      <%= @user.target_user.count %>
+    </strong>
+    コラボ申請した
+  <!-- </a> -->
+  </div>
+</div>

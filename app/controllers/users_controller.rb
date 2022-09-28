@@ -9,7 +9,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @events = @user.events.paginate(page: params[:page])
     @microposts = @user.microposts.paginate(page: params[:page])
+    @applicant_users = @user.applicant_user.paginate(page: params[:page])
+    @target_users = @user.target_user.paginate(page: params[:page])
   end
 
   def new
@@ -66,10 +69,8 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :content)
     end
-
-    # beforeアクション
 
     # 正しいユーザーかどうか確認
     def correct_user

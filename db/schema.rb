@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_31_131853) do
+ActiveRecord::Schema.define(version: 2022_09_23_103643) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,37 @@ ActiveRecord::Schema.define(version: 2022_08_31_131853) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "collaborations", force: :cascade do |t|
+    t.integer "target_user_id"
+    t.integer "applicant_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["applicant_user_id"], name: "index_collaborations_on_applicant_user_id"
+    t.index ["target_user_id", "applicant_user_id"], name: "index_collaborations_on_target_user_id_and_applicant_user_id", unique: true
+    t.index ["target_user_id"], name: "index_collaborations_on_target_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "planner"
+    t.string "maintitle"
+    t.text "about"
+    t.string "title_content1"
+    t.text "content1"
+    t.string "title_content2"
+    t.text "content2"
+    t.string "title_content3"
+    t.text "content3"
+    t.string "title_cotent4"
+    t.text "content4"
+    t.string "title_content5"
+    t.text "content5"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "created_at"], name: "index_events_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "microposts", force: :cascade do |t|
@@ -65,9 +96,11 @@ ActiveRecord::Schema.define(version: 2022_08_31_131853) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.text "content"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "events", "users"
   add_foreign_key "microposts", "users"
 end

@@ -1,0 +1,12 @@
+<% if applicant_user.present? %>
+  <li id="applicant-user-<%= applicant_user.id %>">
+    <%= link_to gravatar_for(applicant_user, size: 50), applicant_user %>
+    <span class="user"><%= link_to applicant_user.name, applicant_user %></span>
+    <span class="content"></span>
+    <span class="timestamp">
+      <%= time_ago_in_words(applicant_user.created_at) %> ago.
+    </span>
+  </li>
+<% end %>
+
+

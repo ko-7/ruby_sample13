@@ -1,4 +1,5 @@
 <% provide(:title, @user.name) %>
+
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
@@ -9,16 +10,95 @@
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
+      <%= render 'follow_form' if logged_in? %>
+      <%= render 'shared/apply_status' %>
+      <%= render 'apply_form' if logged_in? %>
     </section>
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-      <%= will_paginate @microposts %>
-    <% end %>
+
+    <div>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">プロフィール</a></li>
+          <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab">イベント投稿</a></li>
+          <li role="presentation"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">ツイート</a></li>
+      
+        <% if current_user?(@user) %>
+          <li role="presentation"><a href="#applicant" aria-controls="applicant" role="tab" data-toggle="tab">コラボ申請された</a></li>
+          <li role="presentation"><a href="#target" aria-controls="target" role="tab" data-toggle="tab">コラボ申請した</a></li>
+        <% end %>
+
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active profile" id="profile">
+          <h3>プロフィール欄</h3>
+          <ul>
+            <li><h4>Name</h4><p><%= @user.name %></p></li>
+            <li><h4>Email</h4><p><%= @user.email %></p></li>
+            <li><h4>Content</h4><p><%= @user.content %></p></li>
+          </ul>
+          <%# if current_user?(@user) %>
+            <%#= link_to "delete", @user, method: :delete,
+                                            data: { confirm: "You sure?" } %>
+          <%# end %>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="events">
+          <!--　投稿したイベントがあれば一覧表示する -->
+          <% if @user.events.any? %>
+            <h3>Events (<%= @user.events.count %>)</h3>
+            <div class="events">
+              <% @events.each do |event| %>
+                <%= render 'events/user_events', event: event %>
+              <% end %>
+            </div>
+            <%= will_paginate @events %>
+          <% end %>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="posts">
+          <% if @user.microposts.any? %>
+            <h3>Microposts (<%= @user.microposts.count %>)</h3>
+            <ol class="microposts">
+              <%= render @microposts %>
+            </ol>
+            <%= will_paginate @microposts %>
+          <% end %>
+        </div>
+
+        <% if current_user?(@user) %>
+          <div role="tabpanel" class="tab-pane" id="applicant">
+            <h3>相手からのコラボ申請 (<%= @user.applicant_users.count %>)</h3>
+            <% if @user.applicant_users.any? %>
+              <div class="applicant_user">
+                <% @applicant_users.each do |applicant_user| %>
+                  <%= render 'collaborations/applicant_user', applicant_user: applicant_user %>
+                <% end %>
+              </div>
+              <%= will_paginate @applicant_users %>
+            <% end %>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="target">
+            <h3>自分からのコラボ申請 (<%= @user.target_users.count %>)</h3>
+            <% if @user.target_users.any? %>
+              <div class="target_user">
+                <% @target_users.each do |target_user| %>
+                  <%= render 'collaborations/target_user', target_user: target_user %>
+                <% end %>
+              </div>
+              <%= will_paginate @target_users %>
+            <% end %>
+          </div>
+        <% end %>
+
+
+      </div>
+    </div>
+    
   </div>
 </div>
+

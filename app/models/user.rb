@@ -1,5 +1,22 @@
 class User < ApplicationRecord
 
+  # collaborationsテーブルとの関連付け
+  has_many :target_users,
+    class_name: "Collaboration",
+    foreign_key: "applicant_user_id",
+    dependent: :destroy
+  # has_many :applicant_user, through: :target_users
+  has_many :target_user, through: :target_users
+  #  ↑ has_many :[カラム名], through: :[仮のテーブル名]
+
+  has_many :applicant_users,
+    class_name: "Collaboration",
+    foreign_key: "target_user_id",
+    dependent: :destroy
+    has_many :applicant_user, through: :applicant_users
+ 
+
+  
   # micropostsテーブルとの関連付け
   has_many :microposts, dependent: :destroy
 
@@ -17,15 +34,17 @@ class User < ApplicationRecord
     dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
 
+  # eventsテーブルとの関連付け
+  has_many :events, dependent: :destroy
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+  validates :email, presence: true, length: { maximum: 255 },
+                      format: { with: VALID_EMAIL_REGEX },
+                      uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
@@ -116,7 +135,24 @@ validates :email, presence: true, length: { maximum: 255 },
     following.include?(other_user)
   end
 
+  # Collraborationsテーブル関係の関数-----------------------------------------------------------------
 
+  # コラボ申請する
+    def apply(other_user)
+      target_user << other_user
+    end
+
+    # コラボ申請解除する
+    def unapply(other_user)
+      target_users.find_by(target_user_id: other_user.id).destroy
+    end
+
+    # 現在のユーザーが「コラボ申請」してたらtrueを返す
+    def applied?(other_user)
+      target_user.include?(other_user)
+    end
+
+  # --------------------------------------------------------------------------------------------------
 
   private
 

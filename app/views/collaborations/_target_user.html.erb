@@ -1,0 +1,13 @@
+<% if target_user.present? %>
+  <li id="applicant-user-<%= target_user.id %>">
+    <%= link_to gravatar_for(target_user, size: 50), target_user %>
+    <span class="user"><%= link_to target_user.name, target_user %></span>
+    <span class="content"></span>
+    <span class="timestamp">
+      <%= time_ago_in_words(target_user.created_at) %> ago.
+    </span>
+    <%#= link_to "delete", target_user, method: :delete, data: { confirm: "You sure?" } %>
+  </li>
+<% end %>
+
+

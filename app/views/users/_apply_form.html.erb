@@ -1,0 +1,9 @@
+<% unless current_user?(@user) %>
+  <div id="apply_form">
+    <% if current_user.applied?(@user) %>
+      <%= render 'unapply' %>
+    <% else %>
+      <%= render 'apply' %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,20 @@
+<% if event.present? %>
+  <li id="event-<%= event.id %>">
+  <%= link_to gravatar_for(event.user, size: 50), event.user %>
+  <span class="user"><%= link_to event.user.name, event.user %></span>
+  <span class="content">
+    <%= event.maintitle %>
+    <%= event.about %>
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(event.created_at) %> ago.
+    <% if current_user?(event.user) %>
+      <%= link_to "delete", event, method: :delete,
+                                      data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+  <%= link_to "詳細を見る", event, class: "btn btn-primary"  %>
+  </li>
+<% end %>
+
+
