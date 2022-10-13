@@ -47,6 +47,20 @@
         </div>
 
         <div role="tabpanel" class="tab-pane" id="events">
+          <div class="col-md-6 col-md-offset-3">
+          <%= form_with(model: @user, local: true) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control' %>
+ 
+            <%= f.label :password_confirmation, "Confirmation" %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+ 
+            <%= f.submit "Save changes", class: "btn btn-primary" %>
+          <% end %>
+
+
           <!--　投稿したイベントがあれば一覧表示する -->
           <% if @user.events.any? %>
             <h3>Events (<%= @user.events.count %>)</h3>
