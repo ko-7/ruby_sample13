@@ -1,0 +1,15 @@
+current directory: /home/wsluser/ruby/sample13/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.10.3/ext/bootsnap
+/home/wsluser/.rbenv/versions/3.1.2/bin/ruby -I /home/wsluser/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20221013-32476-b53poz.rb extconf.rb
+creating Makefile
+
+current directory: /home/wsluser/ruby/sample13/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.10.3/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /home/wsluser/ruby/sample13/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.10.3/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.so
+
+current directory: /home/wsluser/ruby/sample13/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.10.3/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20221013-32476-sw4m5p/bootsnap
