@@ -45,7 +45,7 @@ end
 
 group :production do
   gem 'pg', '~>1.4.3'
-  gem 'psych', '~> 3.1'
+  # gem 'psych', '~> 3.1'
 end
 
 # Windows ではタイムゾーン情報用の tzinfo-data gem を含める必要があります
