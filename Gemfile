@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.2'
 
 gem 'rails',                      '6.1.6.1'
-gem 'aws-sdk-s3',                 '1.113.0', require: false
+# gem 'aws-sdk-s3',                 '1.113.0', require: false
 gem 'image_processing',           '1.12.2'
 gem 'mini_magick',                '4.9.5'
 # gem 'active_storage_validations', '0.8.2'
