@@ -19,7 +19,11 @@ gem 'webpacker',  '4.0.7'
 gem 'turbolinks', '5.2.0'
 gem 'jbuilder',   '2.9.1'
 gem 'bootsnap',   '1.10.3', require: false
+gem 'net-imap'
+gem 'net-pop'
 gem 'net-smtp'
+gem 'psych', '< 4'
+
 group :development, :test do
   gem 'sqlite3', '1.4.2'
   gem 'byebug',  '11.0.1', platforms: [:mri, :mingw, :x64_mingw]
@@ -45,7 +49,6 @@ end
 
 group :production do
   gem 'pg', '~>1.4.3'
-  gem 'psych', '< 4'
 end
 
 # Windows ではタイムゾーン情報用の tzinfo-data gem を含める必要があります
