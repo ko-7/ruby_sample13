@@ -8,10 +8,10 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
     if @event.save
-      flash[:notice] = "イベントの投稿が完了しました"
-      redirect_to("/")
+      flash[:success] = "イベントの投稿が完了しました"
+      redirect_to "/users/#{current_user.id}"
     else
-      render("events/new")
+      render "events/new"
     end
   end
 
@@ -34,4 +34,20 @@ class EventsController < ApplicationController
       redirect_to root_url if @event.nil?
     end
 
+    def event_params
+      params.require(:event).permit(
+        :maintitle,
+        :about,
+        :title_content1,
+        :content1,
+        :title_content2,
+        :content2,
+        :title_content3,
+        :content3,
+        :title_content4,
+        :content4,
+        :title_content5,
+        :content5,
+      )
+    end
 end

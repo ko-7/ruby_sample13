@@ -7,7 +7,7 @@ class MicropostsController < ApplicationController
     @micropost.image.attach(params[:micropost][:image])
     if @micropost.save
       flash[:success] = "Micropost created!"
-      redirect_to root_url
+      redirect_to "/users/#{current_user.id}"
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'static_pages/home'

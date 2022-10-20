@@ -16,7 +16,6 @@
     </section>
   </aside>
   <div class="col-md-8">
-
     <div>
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
@@ -31,7 +30,7 @@
 
       </ul>
 
-      <!-- Tab panes -->
+      <!-- Tab panels -->
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active profile" id="profile">
           <h3>プロフィール欄</h3>
@@ -40,26 +39,15 @@
             <li><h4>Email</h4><p><%= @user.email %></p></li>
             <li><h4>Content</h4><p><%= @user.content %></p></li>
           </ul>
-          <%# if current_user?(@user) %>
-            <%#= link_to "delete", @user, method: :delete,
-                                            data: { confirm: "You sure?" } %>
-          <%# end %>
+          <% if current_user?(@user) %>
+            <%= link_to "プロフィールを編集する", edit_user_path, class: "btn btn-primary"  %>
+          <% end %>
         </div>
 
         <div role="tabpanel" class="tab-pane" id="events">
-          <div class="col-md-6 col-md-offset-3">
-          <%= form_with(model: @user, local: true) do |f| %>
-            <%= render 'shared/error_messages', object: f.object %>
-
-            <%= f.label :name %>
-            <%= f.text_field :name, class: 'form-control' %>
- 
-            <%= f.label :password_confirmation, "Confirmation" %>
-            <%= f.password_field :password_confirmation, class: 'form-control' %>
- 
-            <%= f.submit "Save changes", class: "btn btn-primary" %>
+          <% if current_user?(@user) %>
+            <%= link_to "イベントを投稿する", new_event_path, class: "event-post-button btn btn-primary"  %>
           <% end %>
-
 
           <!--　投稿したイベントがあれば一覧表示する -->
           <% if @user.events.any? %>
@@ -74,6 +62,11 @@
         </div>
 
         <div role="tabpanel" class="tab-pane" id="posts">
+          <% if current_user?(@user) %>
+            <h3>ツイートする</h3>
+            <%= render 'shared/micropost_form' %>
+          <% end %>
+
           <% if @user.microposts.any? %>
             <h3>Microposts (<%= @user.microposts.count %>)</h3>
             <ol class="microposts">

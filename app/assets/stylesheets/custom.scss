@@ -18,6 +18,7 @@ body {
 }
 
 section {
+  margin-bottom: 50px;
   overflow: auto;
 }
 
@@ -253,7 +254,7 @@ input {
   ul{
     list-style: none;
     padding: 0;
-    margin-bottom: 150px;
+    margin-bottom: 50px;
     border-top: 1px solid #e8e8e8;
     li {
       padding: 5px 0;
@@ -293,6 +294,7 @@ input {
     margin-top: 5px;
   }
 }
+
 
 aside {
   textarea {
@@ -391,5 +393,30 @@ span.image {
   }
   strong {
     display: block;
+  }
+}
+
+// users showページ----------------
+#profile{
+  a{
+    width: 100%;
+  }
+}
+
+#posts{
+  form{
+    margin-bottom: 80px;
+    padding-top: 30px;
+    border-top:1px solid #e8e8e8;
+    input[type="submit"]{
+      margin-bottom: 10px;
+    }
+  }
+}
+
+#events{
+  .event-post-button {
+    margin-top: 30px;
+    width: 100%;
   }
 }
