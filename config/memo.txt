@@ -1,0 +1,1 @@
+postgres://[user名]:[password]@[host名]:[port番号]/[DB名]
