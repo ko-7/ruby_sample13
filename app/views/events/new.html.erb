@@ -5,36 +5,13 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(model: @event, local: true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <%= f.label :maintitle %>
+      <%= f.label :maintitle, "タイトル" %>
       <%= f.text_field :maintitle, class: 'form-control' %>
-
-      <%= f.label :about %>
-      <%= f.text_field :about, class: 'form-control' %>
 
       <%#= f.label :title_content1 %>
       <%#= f.text_field :title_content1, class: 'form-control' %>
-      <%= f.label :content1 %>
-      <%= f.text_area :content1, class: 'form-control' %>
-
-      <%#= f.label :title_content2 %>
-      <%#= f.text_field :title_content2, class: 'form-control' %>
-      <%= f.label :content2 %>
-      <%= f.text_field :content2, class: 'form-control' %>
-
-      <%#= f.label :title_content3 %>
-      <%#= f.text_field :title_content3, class: 'form-control' %>
-      <%= f.label :content3 %>
-      <%= f.text_field :content3, class: 'form-control' %>
-
-      <%#= f.label :title_content4 %>
-      <%#= f.text_field :title_content4, class: 'form-control' %>
-      <%= f.label :content4 %>
-      <%= f.text_field :content4, class: 'form-control' %>
-
-      <%#= f.label :title_content5 %>
-      <%#= f.text_field :title_content5, class: 'form-control' %>
-      <%= f.label :content5 %>
-      <%= f.text_field :content5, class: 'form-control' %>
+      <%= f.label :content1, "内容" %>
+      <%= f.text_area :content1, class: 'form-control', size: "10x10" %>
 
       <%= f.submit "投稿する", class: "btn btn-primary" %>
     <% end %>

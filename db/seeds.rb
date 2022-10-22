@@ -39,9 +39,14 @@ followers.each { |follower| follower.follow(user) }
 
 # ユーザーの一部を対象にイベント投稿を作成する
 users = User.order(:created_at).take(6)
-3.times do
-  maintitle = Faker::Lorem.sentence(word_count: 7)
-  users.each { |user| user.events.create!(maintitle: maintitle)}
+7.times do
+  # maintitle = Faker::Lorem.sentence(word_count: 7)
+  maintitle = Faker::JapaneseMedia::StudioGhibli.movie
+  content1 = Faker::Lorem.sentence(word_count: 100)
+  users.each { |user| user.events.create!(
+    maintitle: maintitle,
+    content1: content1
+  )}
 end
 
 # 「コラボ申請」の関係を作成する

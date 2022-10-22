@@ -1,58 +1,12 @@
 <h1><%= @event.maintitle %></h1>
-<p><%= @event.about %></p>
-
-<div class="panel panel-primary">
-  <div class="panel-heading">支援内容</div>
-  <div class="panel-body">
-    <%= @event.id %>
-  </div>
-</div>
+<p><%#= @event.about %></p>
 
 <% if @event.content1? %>
   <div class="panel panel-primary">
-    <div class="panel-heading">Panel heading without title</div>
+    <div class="panel-heading">イベント内容</div>
     <div class="panel-body">
       <%= @event.content1 %>
     </div>
   </div>
 <% end %>
-
-<% if @event.content2? %>
-  <div class="panel panel-primary">
-    <div class="panel-heading">Panel heading without title</div>
-    <div class="panel-body">
-      <%= @event.content2 %>
-    </div>
-  </div>
-<% end %>
-
-<% if @event.content3? %>
-  <div class="panel panel-primary">
-    <div class="panel-heading">Panel heading without title</div>
-    <div class="panel-body">
-      <%= @event.content3 %>
-    </div>
-  </div>
-<% end %>
-
-<% if @event.content4? %>
-  <div class="panel panel-primary">
-    <div class="panel-heading">Panel heading without title</div>
-    <div class="panel-body">
-      <%= @event.content4 %>
-    </div>
-  </div>
-<% end %>
-
-<% if @event.content5? %>
-  <div class="panel panel-primary">
-    <div class="panel-heading">Panel heading without title</div>
-    <div class="panel-body">
-      <%= @event.content5 %>
-    </div>
-  </div>
-<% end %>
-
-
-  
 
